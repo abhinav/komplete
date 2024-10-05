@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: BSD-3-Clause
-
 package komplete
 
 import (
@@ -11,19 +9,23 @@ import (
 	"github.com/alecthomas/kong"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"go.abhg.dev/gs/internal/ioutil"
 )
 
 func TestCommandRun(t *testing.T) {
 	shells := []string{"bash", "zsh", "fish"}
 	for _, shell := range shells {
 		t.Run(shell, func(t *testing.T) {
-			var stdout bytes.Buffer
+			var stdout, stderr bytes.Buffer
+			defer func() {
+				if stderr.Len() > 0 {
+					t.Logf("stderr: %s", stderr.String())
+				}
+			}()
 
 			parser, err := kong.New(
 				&struct{}{},
 				kong.Name("test"),
-				kong.Writers(&stdout, ioutil.TestOutputWriter(t, "")),
+				kong.Writers(&stdout, &stderr),
 			)
 			require.NoError(t, err)
 
@@ -34,12 +36,17 @@ func TestCommandRun(t *testing.T) {
 	}
 
 	t.Run("unknown", func(t *testing.T) {
-		var stdout bytes.Buffer
+		var stdout, stderr bytes.Buffer
+		defer func() {
+			if stderr.Len() > 0 {
+				t.Logf("stderr: %s", stderr.String())
+			}
+		}()
 
 		parser, err := kong.New(
 			&struct{}{},
 			kong.Name("test"),
-			kong.Writers(&stdout, ioutil.TestOutputWriter(t, "")),
+			kong.Writers(&stdout, &stderr),
 		)
 		require.NoError(t, err)
 

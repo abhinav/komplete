@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: BSD-3-Clause
-
 // Package komplete is a package for generating completions for Kong CLIs.
 //
 // To use it, build a Kong parser from your CLI grammar,
@@ -44,7 +42,6 @@ import (
 
 	"github.com/alecthomas/kong"
 	"github.com/buildkite/shellwords"
-	"go.abhg.dev/gs/internal/must"
 )
 
 // Implementation notes:
@@ -395,7 +392,7 @@ parser:
 				return nil
 
 			default:
-				must.Failf("unexpected flag status: %v", status)
+				panic(fmt.Sprintf("unexpected flag status: %v", status))
 			}
 
 		case kong.FlagValueToken:
