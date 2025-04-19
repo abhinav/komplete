@@ -2,7 +2,7 @@ package komplete
 
 import (
 	"bytes"
-	"fmt"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -357,7 +357,7 @@ func TestKongPredictor(t *testing.T) {
 					name += c.give.Last
 				}
 				if name == "" {
-					name = fmt.Sprintf("%d", idx)
+					name = strconv.Itoa(idx)
 				}
 
 				t.Run(name, func(t *testing.T) {

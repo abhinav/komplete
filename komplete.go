@@ -98,7 +98,7 @@ func (cmd *Command) Run(kctx *kong.Context) (err error) {
 	name := kctx.Model.Name
 	switch cmd.Shell {
 	case "zsh":
-		fmt.Fprintln(out, `autoload -U +X bashcompinit && bashcompinit`)
+		_, _ = fmt.Fprintln(out, `autoload -U +X bashcompinit && bashcompinit`)
 		fallthrough // bash and zsh use the same logic
 	case "bash":
 		// complete is a bash built-in that arranges for exe
@@ -116,16 +116,16 @@ func (cmd *Command) Run(kctx *kong.Context) (err error) {
 		// Ref:
 		// https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html#index-complete
 		// https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html#index-COMP_005fLINE
-		fmt.Fprintf(out, "complete -C %s %s\n", exe, name)
+		_, _ = fmt.Fprintf(out, "complete -C %s %s\n", exe, name)
 
 	case "fish":
-		fmt.Fprintf(out, "function __complete_%s\n", name)
-		fmt.Fprintln(out, "    set -lx COMP_LINE (commandline -cp)")
-		fmt.Fprintln(out, "    test -z (commandline -ct)")
-		fmt.Fprintln(out, `    and set COMP_LINE "$COMP_LINE "`)
-		fmt.Fprintf(out, "    %s\n", exe)
-		fmt.Fprintln(out, "end")
-		fmt.Fprintf(out, `complete -f -c %s -a "(__complete_%s)"`+"\n", name, name)
+		_, _ = fmt.Fprintf(out, "function __complete_%s\n", name)
+		_, _ = fmt.Fprintln(out, "    set -lx COMP_LINE (commandline -cp)")
+		_, _ = fmt.Fprintln(out, "    test -z (commandline -ct)")
+		_, _ = fmt.Fprintln(out, `    and set COMP_LINE "$COMP_LINE "`)
+		_, _ = fmt.Fprintf(out, "    %s\n", exe)
+		_, _ = fmt.Fprintln(out, "end")
+		_, _ = fmt.Fprintf(out, `complete -f -c %s -a "(__complete_%s)"`+"\n", name, name)
 
 	default:
 		return fmt.Errorf("unsupported shell: %s", cmd.Shell)
