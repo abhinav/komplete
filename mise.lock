@@ -1,10 +1,16 @@
 [tools."aqua:golangci/golangci-lint"]
-version = "2.1.2"
+version = "2.1.6"
 backend = "aqua:golangci/golangci-lint"
 
+[tools."aqua:golangci/golangci-lint".checksums]
+"golangci-lint-2.1.6-darwin-arm64.tar.gz" = "sha256:90783fa092a0f64a4f7b7d419f3da1f53207e300261773babe962957240e9ea6"
+
 [tools.go]
-version = "1.24.2"
+version = "1.24.4"
 backend = "core:go"
+
+[tools.go.checksums]
+"go1.24.4.darwin-arm64.tar.gz" = "sha256:27973684b515eaf461065054e6b572d9390c05e69ba4a423076c160165336470"
 
 [tools.gofumpt]
 version = "0.8.0"
@@ -15,5 +21,8 @@ version = "0.8.1"
 backend = "ubi:abhinav/doc2go"
 
 [tools."ubi:miniscruff/changie"]
-version = "1.21.1"
+version = "1.22.0"
 backend = "ubi:miniscruff/changie"
+
+[tools."ubi:miniscruff/changie".checksums]
+changie-macos-aarch64 = "sha256:b4484d048f714e4f2dbc2cae3211326ca121f9dacb569b0f6441f5b7714a986b"

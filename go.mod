@@ -1,8 +1,6 @@
 module go.abhg.dev/komplete
 
-go 1.24.3
-
-toolchain go1.24.4
+go 1.24.4
 
 require (
 	github.com/alecthomas/kong v1.11.0
