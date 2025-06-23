@@ -35,6 +35,8 @@ jobs:
         uses: jdx/mise-action@v2
         with:
           cache_key_prefix: mise-v0-stable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate API reference
         run: doc2go -home go.abhg.dev/komplete  ./...
       - name: Upload pages

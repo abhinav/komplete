@@ -18,6 +18,8 @@ jobs:
       uses: jdx/mise-action@v2
       with:
         cache_key_prefix: mise-v0-stable
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: mise run lint
 
   test:
@@ -36,6 +38,8 @@ jobs:
       uses: jdx/mise-action@v2
       with:
         cache_key_prefix: mise-v0-${{ matrix.mise-env }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Test
       run: mise run cover
     - name: Upload coverage
