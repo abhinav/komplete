@@ -3,7 +3,7 @@ module go.abhg.dev/komplete
 go 1.24.4
 
 require (
-	github.com/alecthomas/kong v1.12.0
+	github.com/alecthomas/kong v1.12.1
 	github.com/buildkite/shellwords v1.0.0
 	github.com/stretchr/testify v1.10.0
 )
